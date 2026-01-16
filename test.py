@@ -31,6 +31,7 @@ parser.add_argument('--pretrained_model_path', type=str, default='/media/jin/b/T
 # parser.add_argument('--pretrained_model_path', type=str, default='/media/jin/b/TG/my_net/train_code/exp/Our_CAVE_3/loss2025_07_09_18_20_40/net_400eopch.pth')
 # parser.add_argument('--pretrained_model_path', type=str, default='net_400epoch.pth')
 parser.add_argument('--outf', type=str, default='./exp/cave/JOCSR_cave_5/')
+parser.add_argument('--dataset_number', type=int, default='32')
 parser.add_argument("--gpu_id", type=str, default='0')
 opt = parser.parse_args()
 os.environ["CUDA_DEVICE_ORDER"] = 'PCI_BUS_ID'
@@ -56,7 +57,7 @@ if torch.cuda.is_available():
 # with open(f'{opt.data_root}/split_txt/valid_list+.txt', 'r') as fin:
 #     hyper_list = [line.replace('\n', '.png') for line in fin]
 # hyper_list.sort()
-hyper_list = [str(line) + '.mat' for line in range(32)]
+hyper_list = [str(line) + '.mat' for line in range(opt.dataset_number)]  #
 var_name = 'cube'
 def validate(val_loader, model):
     model.eval()
